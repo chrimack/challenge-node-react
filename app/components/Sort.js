@@ -30,14 +30,21 @@ class Sort extends React.Component {
     };
 
     let newOrder;
-    value === 'name'
-      ? // sort by last name
-        (newOrder = students.sort((a, b) =>
-          checkValues(a[value].last, b[value].last)
-        ))
-      : // sort by age, email, or grade
-        (newOrder = students.sort((a, b) => checkValues(a[value], b[value])));
-    console.log('NEW SORT ORDER: ', newOrder);
+
+    if (value === 'name') {
+      newOrder = students.sort((a, b) =>
+        checkValues(a[value].last, b[value].last)
+      );
+    } else if (value === 'grade') {
+      newOrder = students.sort((a, b) => {
+        const numberA = parseInt(a[value]);
+        const numberB = parseInt(b[value]);
+        return checkValues(numberA, numberB);
+      });
+    } else {
+      newOrder = students.sort((a, b) => checkValues(a[value], b[value]));
+    }
+
     this.props.updateSort(newOrder);
   }
 

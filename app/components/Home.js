@@ -13,7 +13,7 @@ class Home extends React.Component {
       <div className="container">
         <Messages messages={this.props.messages} />
         <div className="row">
-          <Sort />
+          {/* <Sort /> */}
           <StudentList />
           <AddStudent />
         </div>
